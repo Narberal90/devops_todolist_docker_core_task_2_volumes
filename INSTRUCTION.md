@@ -36,7 +36,7 @@ Add the DB_HOST variable to the .env file, and paste the copied IPv4Address into
 The address for the container named `sql`.
 
 
-6. Build the app image, create a container, and run it:
+6. Build the todoapp:2.0.0 image, create a container, and run it:
 ```
 docker build -t todoapp:2.0.0 -f Dockerfile .
 docker run -d --name api -p 8080:8080 todoapp:2.0.0
