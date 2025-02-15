@@ -19,9 +19,11 @@ docker build -t mysql-local:1.0.0 -f Dockerfile.mysql .
 ```
 Make sure to include the dot at the end of the command.
 
-3. Run the MySQL server:
+3.5. Update the .env file:
+In the project folder, you should see an example .env.example file. Copy the contents of this file to create a new .env file (if it doesn't already exist) 
+Run the MySQL server:
 ```
-docker run -d -p 3306:3306 --name sql mysql-local:1.0.0
+docker run --env-file .env -d -p 3306:3306 --name sql mysql-local:1.0.0
 ```
 
 4. Find the `IPv4Address` of the container:
@@ -29,13 +31,14 @@ Use the following command:
 ```
 docker network inspect bridge
 ```
-Copy the address for the container named `sql`.
 
-5. Paste the copied address into `todolist/settings.py` on line 70.
+Add the DB_HOST variable to the .env file, and paste the copied IPv4Address into it.
+The address for the container named `sql`.
+
 
 6. Build the app image, create a container, and run it:
 ```
-docker build -t todolist:2.0.0 -f Dockerfile .
+docker build -t todoapp:2.0.0 -f Dockerfile .
 docker run -d --name api -p 8080:8080 todoapp:2.0.0
 ```
 

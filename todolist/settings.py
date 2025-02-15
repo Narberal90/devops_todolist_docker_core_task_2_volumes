@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -66,9 +71,9 @@ DATABASES = {
         "ENGINE": "mysql.connector.django",
         "NAME": "app_db",
         "USER": "app_user",
-        "PASSWORD": "1234",
-        "HOST": "172.17.0.2",
-        "PORT": "",
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": "3306",
     }
 }
 
